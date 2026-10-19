@@ -4,6 +4,20 @@ An independent empirical exploration of adoption, household circumstances and so
 
 **Status:** exploratory data construction.
 
+## Motivation and intended questions
+
+Family background is connected with the resources and circumstances people experience as they grow up. Adoption and stepfamily information offer a way to frame more detailed questions about those environments: how can household circumstances be measured consistently over time, when did a child join a household, and which later outcomes could be studied with the resulting longitudinal records?
+
+The goal of this repository is to prepare a data foundation for investigating those questions. It brings relationship information and household income receipts into a common person-by-wave structure. Following people across survey waves can make the timing of household circumstances visible in a way that a single snapshot cannot.
+
+## Why the data construction matters
+
+Longitudinal surveys distribute information across files and waves. A person's persistent identifier, their household at a particular interview, relationship roster information and income receipts need to be linked at the correct level. Household membership can change even when a person identifier remains the same, and the available adoption fields are not identical in every wave.
+
+The Stata workflow first establishes the core person/household records for each wave, then links adoption and stepchild information using the relevant identifiers. It handles the wave-`n` roster separately and constructs an age-at-joining field where the required year information is present. Income receipts are aggregated to people and then households before waves are appended. This ordering gives later analysis an explicit record of how the family-background variables were assembled.
+
+The resulting file is a starting point for descriptive or causal research, rather than an estimated answer about family background. Adoption is not random assignment to a household, and differences between groups may reflect selection, earlier circumstances and measurement differences. A subsequent study would need to define its outcome, comparison group and identification strategy. This repository concentrates on the earlier task of making the relevant longitudinal information available for that work.
+
 ## Workflow
 
 `do_files/adoption.do` loops over waves `a`–`n` and:
