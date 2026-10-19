@@ -1,0 +1,7 @@
+UKHLS/
+data/
+outputs/
+*.dta
+*.log
+*.smcl
+.env
